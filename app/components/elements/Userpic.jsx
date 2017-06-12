@@ -10,7 +10,7 @@ class Userpic extends Component {
     shouldComponentUpdate = shouldComponentUpdate(this, 'Userpic')
 
     render() {
-        const {json_metadata, width, height} = this.props
+        const {json_metadata, width, height, night_mode} = this.props
         const hideIfDefault = this.props.hideIfDefault || false
 
         let url = null;
@@ -30,7 +30,8 @@ class Userpic extends Component {
             if(hideIfDefault) {
                 return null;
             }
-            url = require('app/assets/images/user.png');
+            let filename = night_mode ? 'user-inverse': 'user';
+            url = require('app/assets/images/' + filename + '.png');
         }
 
         const style = {backgroundImage: 'url(' + url + ')',
@@ -43,9 +44,21 @@ class Userpic extends Component {
 
 export default connect(
     (state, ownProps) => {
-        const {account, width, height, hideIfDefault} = ownProps
+        const {account, width, height, hideIfDefault} = ownProps;
+        let myAccount = state.user.getIn(['current', 'username']);
+        let night_mode = false;
+        if(!!myAccount){
+            const json_metadata = state.global.getIn(['accounts', myAccount, 'json_metadata']);
+            try {
+                const md = JSON.parse(json_metadata);
+                if(md.profile) {
+                    night_mode = !!md.profile.night_mode;
+                }
+            } catch(e){}
+        }
         return {
             json_metadata: state.global.getIn(['accounts', account, 'json_metadata']),
+            night_mode: night_mode,
             width,
             height,
             hideIfDefault,

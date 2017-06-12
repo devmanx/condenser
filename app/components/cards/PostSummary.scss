@@ -219,3 +219,28 @@ ul.PostsList__summaries {
     }
   }
 }
+
+body[data-nightmode] {
+  .PostSummary {
+    background-color: $night-block;
+    padding: 5px;
+  }
+
+  .PostSummary__header {
+    > h3 {
+      a {
+        color: $night-color;
+
+        &:visited {
+          color: darken($night-color, 15%);
+        }
+      }
+    }
+  }
+
+  .PostSummary__image {
+    margin-top: 2px;
+    background-color: lighten($night-block, 10%);
+    border-color: $night-block;
+  }
+}

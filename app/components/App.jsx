@@ -93,7 +93,8 @@ class App extends React.Component {
             p.flash !== n.flash ||
             this.state.open !== nextState.open ||
             this.state.showBanner !== nextState.showBanner ||
-            this.state.showCallout !== nextState.showCallout
+            this.state.showCallout !== nextState.showCallout ||
+            this.props.night_mode !== nextProps.night_mode
         );
     }
 
@@ -130,7 +131,7 @@ class App extends React.Component {
 
     render() {
         const {location, params, children, flash, new_visitor,
-            depositSteem, signup_bonus} = this.props;
+            depositSteem, signup_bonus, night_mode} = this.props;
         const lp = false; //location.pathname === '/';
         const miniHeader = location.pathname === '/create_account' || location.pathname === '/pick_account';
         const params_keys = Object.keys(params);
@@ -139,6 +140,11 @@ class App extends React.Component {
         const warning = flash.get('warning');
         const success = flash.get('success');
         let callout = null;
+
+        if(process.env.BROWSER) {
+            night_mode ? document.body.setAttribute('data-nightmode', true) : document.body.removeAttribute('data-nightmode');
+        }
+
         if (this.state.showCallout && (alert || warning || success)) {
             callout = <div className="App__announcement row">
                 <div className="column">
@@ -317,7 +323,19 @@ App.propTypes = {
 
 export default connect(
     state => {
+        let account = state.user.getIn(['current', 'username']);
+        let night_mode = false;
+        if(!!account){
+            const json_metadata = state.global.getIn(['accounts', account, 'json_metadata']);
+            try {
+                const md = JSON.parse(json_metadata);
+                if(md.profile) {
+                    night_mode = !!md.profile.night_mode;
+                }
+            } catch(e){}
+        }
         return {
+            night_mode: night_mode,
             error: state.app.get('error'),
             flash: state.offchain.get('flash'),
             signup_bonus: state.offchain.get('signup_bonus'),

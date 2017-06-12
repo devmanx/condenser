@@ -57,3 +57,21 @@
         left: 10px!important;
     }
 }
+
+
+body[data-nightmode] {
+  .UserWallet__balance {
+    &.UserWallet__balance.zebra {
+      background-color: $night-block;
+    }
+  }
+
+  .WalletSubMenu {
+    > li > a {
+      &:hover, &.active {
+        color: lighten($dark-gray, 10%);
+      }
+    }
+  }
+
+}

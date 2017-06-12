@@ -201,3 +201,10 @@
     left: -100px;
   }
 }
+
+
+body[data-nightmode] {
+  .Comment__header-user {
+    color: $night-username-color;
+  }
+}

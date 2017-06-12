@@ -6,6 +6,7 @@
   width: 100%;
   z-index: 100;
   background-color: $white;
+
   h3 {
     padding-left: 1rem;
     margin-bottom: 0;
@@ -144,4 +145,34 @@ ul > li > .button {
 .ConnectionError {
   margin-right: 4rem;
   color: #ec5840;
+}
+
+
+body[data-nightmode] {
+  .Header,
+  .Header .menu,
+  .Header__top,
+  .Header__sub-nav {
+    background-color: $night-block;
+  }
+
+  .Header {
+    .menu {
+      .hamburger {
+        @include hamburger($night-color, lighten($night-color, 10%));
+      }
+    }
+  }
+
+  .Header__top {
+    border-bottom-color: lighten($night-background, 30%);
+  }
+
+  .Header__sub-nav {
+    border-bottom-color: lighten($night-background, 30%);
+    .menu li a {
+      border-width: 0;
+      color: darken($white, 20%);
+    }
+  }
 }

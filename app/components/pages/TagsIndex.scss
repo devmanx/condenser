@@ -20,3 +20,21 @@
   }
 }
 
+body[data-nightmode] {
+  table {
+    thead tr {
+      background-color: $night-block;
+      color: $night-color;
+    }
+
+    tbody {
+      tr {
+        background-color: lighten($night-block, 10%);
+
+        &:nth-child(even) {
+          background-color: lighten($night-block, 15%);
+        }
+      }
+    }
+  }
+}
