@@ -49,3 +49,12 @@ div.Header__top
         }
     }
 }
+
+
+body[data-nightmode] {
+  li.Header__userpic {
+    .Userpic {
+      border-color: lighten($night-background, 30%);
+    }
+  }
+}

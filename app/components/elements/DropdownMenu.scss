@@ -38,3 +38,16 @@
     }
   }
 }
+
+
+body[data-nightmode] {
+  .Voting__inner {
+    .DropdownMenu {
+      > .VerticalMenu {
+        background-color: $night-block;
+        border-color: lighten($night-block, 10%);
+        color: $night-color;
+      }
+    }
+  }
+}

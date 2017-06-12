@@ -23,3 +23,16 @@
     }
   }
 }
+
+
+body[data-nightmode] {
+  .TagList__horizontal {
+    a {
+      background: lighten($night-block, 10%);
+
+      &:hover {
+        background: lighten($night-block, 5%);
+      }
+    }
+  }
+}

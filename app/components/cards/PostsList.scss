@@ -90,3 +90,14 @@ body.with-post-overlay {
     width: 62rem;
   }
 }
+
+
+body[data-nightmode] {
+  .PostsList__post_container {
+    background-color: $night-block;
+
+    .PostFull {
+      background-color: $night-block;
+    }
+  }
+}

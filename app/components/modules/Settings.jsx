@@ -29,7 +29,7 @@ class Settings extends React.Component {
         reactForm({
             instance: this,
             name: 'accountSettings',
-            fields: ['profile_image', 'name', 'about', 'location', 'website'],
+            fields: ['profile_image', 'name', 'about', 'location', 'website', 'night_mode:checked'],
             initialValues: props.profile,
             validation: values => ({
                 profile_image: values.profile_image && !/^https?:\/\//.test(values.profile_image) ? 'Invalid URL' : null,
@@ -37,6 +37,7 @@ class Settings extends React.Component {
                 about: values.about && values.about.length > 160 ? 'About is too long' : null,
                 location: values.location && values.location.length > 30 ? 'Location is too long' : null,
                 website: values.website && values.website.length > 100 ? 'Website URL is too long' : values.website && !/^https?:\/\//.test(values.website) ? 'Invalid URL' : null,
+                night_mode: null
             })
         })
         this.handleSubmitForm =
@@ -61,13 +62,18 @@ class Settings extends React.Component {
         this.setState({oldNsfwPref: nsfwPref})
     }
 
+    nightModeOnChange = e => {
+        const {night_mode} = this.state;
+        night_mode.props.onChange(e.target.checked ? "1": "")
+    }
+
     handleSubmit = ({updateInitialValues}) => {
         let {metaData} = this.props
         if (!metaData) metaData = {}
         if(!metaData.profile) metaData.profile = {}
         delete metaData.user_image; // old field... cleanup
 
-        const {profile_image, name, about, location, website} = this.state
+        const {profile_image, name, about, location, website, night_mode} = this.state
 
         // Update relevant fields
         metaData.profile.profile_image = profile_image.value
@@ -75,6 +81,7 @@ class Settings extends React.Component {
         metaData.profile.about = about.value
         metaData.profile.location = location.value
         metaData.profile.website = website.value
+        metaData.profile.night_mode = night_mode.value
 
         // Remove empty keys
         if(!metaData.profile.profile_image) delete metaData.profile.profile_image;
@@ -82,6 +89,7 @@ class Settings extends React.Component {
         if(!metaData.profile.about) delete metaData.profile.about;
         if(!metaData.profile.location) delete metaData.profile.location;
         if(!metaData.profile.website) delete metaData.profile.website;
+        if(!metaData.profile.night_mode) delete metaData.profile.night_mode;
 
         // TODO: Update language & currency
         //store.set('language', language)
@@ -129,7 +137,7 @@ class Settings extends React.Component {
         const {submitting, valid, touched} = this.state.accountSettings
         const disabled = !props.isOwnAccount || state.loading || submitting || !valid || !touched
 
-        const {profile_image, name, about, location, website} = this.state
+        const {profile_image, name, about, location, website, night_mode} = this.state
 
         const {follow, account, isOwnAccount} = this.props
         const following = follow && follow.getIn(['getFollowingAsync', account.name]);
@@ -197,6 +205,9 @@ class Settings extends React.Component {
                         <input type="url" {...website.props} maxLength="100" autoComplete="off" />
                     </label>
                     <div className="error">{website.blur && website.touched && website.error}</div>
+
+                    <input type="checkbox" {...night_mode.props} onChange={this.nightModeOnChange} id="night_mode" />
+                    <label htmlFor="night_mode">{translate('night_mode')}</label>
 
                     <br />
                     {state.loading && <span><LoadingIndicator type="circle" /><br /></span>}

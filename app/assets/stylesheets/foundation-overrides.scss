@@ -32,3 +32,28 @@ button, .button {
 .column, .columns {
     min-width: 0;
 }
+
+
+body[data-nightmode] {
+  .dropdown-pane {
+    li {
+      &.title {
+        color: $black;
+      }
+    }
+    background-color: $night-block;
+    border-color: lighten($night-block, 10%);
+
+    .Author__name {
+      color: #fff;
+    }
+
+    .Author__username {
+      color: $night-color;
+    }
+
+    .VerticalMenu {
+      background: #fefefe;
+    }
+  }
+}

@@ -186,3 +186,10 @@
         }
     }
 }
+
+
+body[data-nightmode] {
+    .UserProfile__top-nav .menu li>a.active {
+        background-color: lighten(#555, 40%);
+    }
+}

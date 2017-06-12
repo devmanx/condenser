@@ -102,3 +102,54 @@
 .App__announcement {
   padding-right: 40px;
 }
+
+
+body[data-nightmode] {
+  background: $night-background;
+  color: $night-color;
+
+  a {
+    color: $night-color;
+  }
+
+  label {
+    color: $night-label;
+  }
+
+  input[type=text],
+  input[type=url],
+  input[type=password],
+  input[type=email],
+  select,
+  textarea {
+    background: lighten($night-background, 30%);
+    color: $night-color;
+  }
+
+  blockquote, blockquote p {
+    color: darken($night-color, 10%);
+  }
+
+  .callout {
+    background-color: lighten($night-block, 15%);
+    color: $night-color;
+  }
+
+  .reveal {
+    background-color: $night-block;
+  }
+
+  .button.hollow {
+    border-color: $night-username-color;
+    color: $night-username-color;
+
+    &:hover {
+      border-color: darken($night-username-color, 15%);
+      color: darken($night-username-color, 15%);
+    }
+  }
+
+  .button.disabled, .button[disabled] {
+    opacity: 0.5;
+  }
+}

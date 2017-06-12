@@ -569,7 +569,8 @@ const en = 	{
 	profile_name: 'Display Name',
 	profile_about: 'About',
 	profile_location: 'Location',
-	profile_website: 'Website',
+    profile_website: 'Website',
+    night_mode: 'Night mode',
 	saved: 'Saved',
 	server_returned_error: 'server returned error',
 	// Beginner tips in empty feed page
