@@ -20,7 +20,7 @@ const defaultNavigate = (e) => {
     browserHistory.push(a.pathname + a.search + a.hash);
 };
 
-function TopRightMenu({username, showLogin, logout, loggedIn, vertical, navigate, toggleOffCanvasMenu, probablyLoggedIn}) {
+function TopRightMenu({username, showLogin, logout, loggedIn, vertical, navigate, toggleOffCanvasMenu, probablyLoggedIn, toggleNightMode}) {
     const mcn = 'menu' + (vertical ? ' vertical show-for-small-only' : '');
     const mcl = vertical ? '' : ' sub-menu';
     const lcn = vertical ? '' : 'show-for-medium';
@@ -91,6 +91,7 @@ function TopRightMenu({username, showLogin, logout, loggedIn, vertical, navigate
             <li className={lcn}><a href="/login.html" onClick={showLogin}>Login</a></li>
             {submit_story}
             {!vertical && submit_icon}
+            <li className={lcn}><a href="javascript:void(0);" onClick={toggleNightMode}>Toggle night mode</a></li>
             {toggleOffCanvasMenu && <li className="toggle-menu Header__hamburger"><a href="#" onClick={toggleOffCanvasMenu}>
                 <span className="hamburger" />
             </a></li>}
@@ -106,7 +107,8 @@ TopRightMenu.propTypes = {
     logout: React.PropTypes.func.isRequired,
     vertical: React.PropTypes.bool,
     navigate: React.PropTypes.func,
-    toggleOffCanvasMenu: React.PropTypes.func
+    toggleOffCanvasMenu: React.PropTypes.func,
+    toggleNightMode: React.PropTypes.func
 };
 
 export default connect(
@@ -134,6 +136,10 @@ export default connect(
         logout: e => {
             if (e) e.preventDefault();
             dispatch(user.actions.logout())
+        },
+        toggleNightMode: e => {
+            localStorage.setItem('night_mode', !(localStorage.getItem('night_mode') === 'true'));
+            dispatch(user.actions.set({key: 'night_mode', value: localStorage.getItem('night_mode')}));
         }
     })
 )(TopRightMenu);
