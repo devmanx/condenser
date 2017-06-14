@@ -333,7 +333,7 @@ export default connect(
                     night_mode = !!md.profile.night_mode;
                 }
             } catch(e){}
-        } else if(localStorage.getItem('night_mode')){
+        } else if(process.env.BROWSER){
             night_mode = localStorage.getItem('night_mode') === 'true';
         }
         return {
