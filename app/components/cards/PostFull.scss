@@ -198,3 +198,9 @@ input.share-box {
     font-size: .8em;
   }
 }
+
+body[data-nightmode] {
+  .PostFull__body a {
+    color: $night-username-color;
+  }
+}
