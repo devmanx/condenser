@@ -130,6 +130,10 @@ body[data-nightmode] {
     color: darken($night-color, 10%);
   }
 
+  .welcomeBanner {
+    background-color: $night-background;
+  }
+
   .callout {
     background-color: lighten($night-block, 15%);
     color: $night-color;
