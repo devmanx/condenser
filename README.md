@@ -1,18 +1,20 @@
-# Steemit.com
+# Steemfeatures.com
 
 ========
-Steemit.com is the react.js web interface to the world's first and best blockchain-based social media platform.  It uses [STEEM](https://github.com/steemit/steem), a blockchain powered by Graphene 2.0 technology to store JSON-based content for a plethora of web applications.   
+Steemfeatures.com is the react.js web interface to the world's first and best blockchain-based social media platform.  It uses [STEEM](https://github.com/steemit/steem), a blockchain powered by Graphene 2.0 technology to store JSON-based content for a plethora of web applications.  
 
-## Why would I want to use Steemit.com?
+Steemfeatures.com is based on steemit.com. 
+
+## Why would I want to use Steemfeatures.com?
 * Learning how to build blockchain-based web applications using STEEM as a content storage mechanism in react.js
 * Reviewing the inner workings of the steemit.com social media platform
-* Assisting with software development for steemit.com
+* Assisting with software development for steemfeatures.com and steemit.com
 
 ## Installation
 
 #### Clone the repository and make a tmp folder
 ```bash
-git clone https://github.com/steemit/condenser
+git clone https://github.com/devmanx/condenser
 cd condenser
 mkdir tmp
 ```
