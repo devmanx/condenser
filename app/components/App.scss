@@ -132,6 +132,12 @@ body[data-nightmode] {
 
   .welcomeBanner {
     background-color: $night-background;
+    background-image: url(../images/lp-bottom-night.jpg);
+
+    .button.hollow {
+      color: $night-color;
+      border-color: $night-color;
+    }
   }
 
   .callout {
@@ -155,5 +161,9 @@ body[data-nightmode] {
 
   .button.disabled, .button[disabled] {
     opacity: 0.5;
+  }
+
+  .input-group-label {
+    background: $night-block;
   }
 }
